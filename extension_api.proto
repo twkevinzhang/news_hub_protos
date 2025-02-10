@@ -1,16 +1,6 @@
 syntax = "proto3";
 package pb;
 
-service ExtensionApi {
-  rpc GetSite (Empty) returns (GetSiteRes) {}
-  rpc GetBoards (GetBoardsReq) returns (GetBoardsRes) {}
-  rpc GetThreadInfos (GetThreadInfosReq) returns (GetThreadInfosRes) {}
-  rpc GetThread (GetThreadReq) returns (GetThreadRes) {}
-  rpc GetRegardingPosts (GetRegardingPostsReq) returns (GetRegardingPostsRes) {}
-  rpc GetPost (GetPostReq) returns (GetPostRes) {}
-  rpc GetComments (GetCommentsReq) returns (GetCommentsRes) {}
-}
-
 message PaginationReq {
   // for offset-based pagination
   optional int32 page = 1;
@@ -46,11 +36,6 @@ message Site {
   string url = 3;
 }
 
-message GetBoardsReq {
-  string site_id = 1;
-  optional PaginationReq page = 2;
-}
-
 message GetBoardsRes {
   repeated Board boards = 1;
   PaginationRes page = 2;
@@ -64,14 +49,6 @@ message Board {
   string large_welcome_image = 5;
   string url = 6;
   repeated string supported_threads_sorting = 7;
-}
-
-message GetThreadInfosReq {
-  string site_id = 1;
-  string board_id = 2;
-  optional PaginationReq page = 3;
-  optional string sort_by = 4;
-  optional string keywords = 5;
 }
 
 message GetThreadInfosRes {
@@ -93,12 +70,6 @@ message ThreadInfo {
   repeated string tags = 10;
 }
 
-message GetThreadReq {
-  string id = 1;
-  string site_id = 2;
-  string board_id = 3;
-}
-
 message GetThreadRes {
   Thread thread = 1;
 }
@@ -114,24 +85,9 @@ message Thread {
   Post original_post = 7;
 }
 
-message GetRegardingPostsReq {
-  string site_id = 1;
-  string board_id = 2;
-  string thread_id = 3;
-  string original_post_id = 5;
-  optional PaginationReq page = 4;
-}
-
 message GetRegardingPostsRes {
   repeated Post regarding_posts = 1;
   PaginationRes page = 2;
-}
-
-message GetPostReq {
-  string site_id = 1;
-  string board_id = 2;
-  string thread_id = 3;
-  string id = 4;
 }
 
 message GetPostRes {
@@ -201,14 +157,6 @@ message Post {
   int32 dislike = 13;
   int32 comments = 14;
   repeated Paragraph contents = 15;
-}
-
-message GetCommentsReq {
-  string site_id = 1;
-  string board_id = 2;
-  string thread_id = 3;
-  string post_id = 4;
-  optional PaginationReq page = 5;
 }
 
 message GetCommentsRes {
