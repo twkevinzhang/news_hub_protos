@@ -75,7 +75,7 @@ message GetThreadInfosReq {
 }
 
 message GetThreadInfosRes {
-  repeated ThreadInfo threadInfos = 1;
+  repeated ThreadInfo thread_infos = 1;
   PaginationRes page = 2;
 }
 
@@ -118,7 +118,6 @@ message GetRegardingPostsReq {
   string site_id = 1;
   string board_id = 2;
   string thread_id = 3;
-  string original_post_id = 5;
   optional PaginationReq page = 4;
 }
 
@@ -192,9 +191,8 @@ message Post {
   string thread_id = 2;
   string board_id = 3;
   string site_id = 4;
-  string authorId = 11;
+  string author_id = 11;
   string author_name = 5;
-  string content = 6;
   int64 created_at = 7;
   string title = 9;
   int32 like = 12;
