@@ -75,22 +75,8 @@ message GetThreadInfosReq {
 }
 
 message GetThreadInfosRes {
-  repeated ThreadInfo thread_infos = 1;
+  repeated Post thread_infos = 1;
   PaginationRes page = 2;
-}
-
-message ThreadInfo {
-  string id = 1;
-  string board_id = 4;
-  string site_id = 5;
-  string url = 11;
-  string title = 2;
-  string author_name = 3;
-  int64 created_at = 6;
-  int64 latest_regarding_post_created_at = 7;
-  int32 regarding_post_count = 8;
-  string preview_content = 9;
-  repeated string tags = 10;
 }
 
 message GetThreadReq {
@@ -100,18 +86,7 @@ message GetThreadReq {
 }
 
 message GetThreadRes {
-  Thread thread = 1;
-}
-
-message Thread {
-  string id = 1;
-  string site_id = 2;
-  string board_id = 3;
-  string url = 8;
-  int64 latest_regarding_post_created_at = 4;
-  int32 regarding_post_count = 5;
-  repeated string tags = 6;
-  Post original_post = 7;
+  Post thread = 1;
 }
 
 message GetRegardingPostsReq {
@@ -195,10 +170,13 @@ message Post {
   string author_name = 5;
   int64 created_at = 7;
   string title = 9;
-  int32 like = 12;
-  int32 dislike = 13;
+  int32 liked = 12;
+  int32 disliked = 13;
   int32 comments = 14;
-  repeated Paragraph contents = 15;
+  int64 latest_regarding_post_created_at = 15;
+  int32 regarding_posts = 16;
+  repeated Paragraph contents = 17;
+  repeated string tags = 18;
 }
 
 message GetCommentsReq {
