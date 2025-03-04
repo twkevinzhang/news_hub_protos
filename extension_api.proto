@@ -5,9 +5,8 @@ service ExtensionApi {
   rpc GetSite (Empty) returns (GetSiteRes) {}
   rpc GetBoards (GetBoardsReq) returns (GetBoardsRes) {}
   rpc GetThreadInfos (GetThreadInfosReq) returns (GetThreadInfosRes) {}
-  rpc GetThread (GetThreadReq) returns (GetThreadRes) {}
+  rpc GetThreadPost (GetThreadPostReq) returns (GetThreadPostRes) {}
   rpc GetRegardingPosts (GetRegardingPostsReq) returns (GetRegardingPostsRes) {}
-  rpc GetPost (GetPostReq) returns (GetPostRes) {}
   rpc GetComments (GetCommentsReq) returns (GetCommentsRes) {}
 }
 
@@ -79,37 +78,27 @@ message GetThreadInfosRes {
   PaginationRes page = 2;
 }
 
-message GetThreadReq {
+message GetThreadPostReq {
   string id = 1;
   string site_id = 2;
   string board_id = 3;
 }
 
-message GetThreadRes {
-  Post thread = 1;
+message GetThreadPostRes {
+  Post thread_post = 1;
 }
 
 message GetRegardingPostsReq {
   string site_id = 1;
   string board_id = 2;
   string thread_id = 3;
+  optional string post_id = 5;
   optional PaginationReq page = 4;
 }
 
 message GetRegardingPostsRes {
   repeated Post regarding_posts = 1;
   PaginationRes page = 2;
-}
-
-message GetPostReq {
-  string site_id = 1;
-  string board_id = 2;
-  string thread_id = 3;
-  string id = 4;
-}
-
-message GetPostRes {
-  Post post = 1;
 }
 
 enum ParagraphType {
