@@ -154,6 +154,7 @@ message QuoteParagraph {
 
 message ReplyToParagraph {
   string id = 1;
+  string preview = 2;
 }
 
 message LinkParagraph {
@@ -173,10 +174,11 @@ message Post {
   int32 liked = 12;
   int32 disliked = 13;
   int32 comments = 14;
-  int64 latest_regarding_post_created_at = 15;
-  int32 regarding_posts = 16;
   repeated Paragraph contents = 17;
   repeated string tags = 18;
+  int64 latest_regarding_post_created_at = 15;
+  int32 regarding_posts_count = 19;
+  string url = 20;
 }
 
 message GetCommentsReq {
