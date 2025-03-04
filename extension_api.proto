@@ -82,6 +82,7 @@ message GetThreadPostReq {
   string id = 1;
   string site_id = 2;
   string board_id = 3;
+  string post_id = 4;
 }
 
 message GetThreadPostRes {
@@ -152,7 +153,6 @@ message LinkParagraph {
 
 message Post {
   string id = 1;
-  optional string origin_post_id = 10;
   string thread_id = 2;
   string board_id = 3;
   string site_id = 4;
