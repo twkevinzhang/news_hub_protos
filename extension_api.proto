@@ -107,6 +107,7 @@ enum ParagraphType {
   PARAGRAPH_TYPE_QUOTE = 1;
   PARAGRAPH_TYPE_REPLY_TO = 2;
   PARAGRAPH_TYPE_TEXT = 3;
+  PARAGRAPH_TYPE_NEW_LINE = 7;
   PARAGRAPH_TYPE_IMAGE = 4;
   PARAGRAPH_TYPE_LINK = 5;
   PARAGRAPH_TYPE_VIDEO = 6;
@@ -118,6 +119,7 @@ message Paragraph {
     ImageParagraph image = 2;
     VideoParagraph video = 3;
     TextParagraph text = 4;
+    NewLineParagraph new_line = 8;
     QuoteParagraph quote = 5;
     ReplyToParagraph reply_to = 6;
     LinkParagraph link = 7;
@@ -136,6 +138,10 @@ message VideoParagraph {
 
 message TextParagraph {
   string content = 1;
+}
+
+message NewLineParagraph {
+  string symbol = 1;
 }
 
 message QuoteParagraph {
