@@ -150,6 +150,7 @@ message QuoteParagraph {
 
 message ReplyToParagraph {
   string id = 1;
+  string author_name = 3;
   string preview = 2;
 }
 
