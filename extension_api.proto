@@ -2,7 +2,7 @@ syntax = "proto3";
 package pb;
 
 service ExtensionApi {
-  rpc GetSite (Empty) returns (GetSiteRes) {}
+  rpc GetSite (GetSiteReq) returns (GetSiteRes) {}
   rpc GetBoards (GetBoardsReq) returns (GetBoardsRes) {}
   rpc GetThreadInfos (GetThreadInfosReq) returns (GetThreadInfosRes) {}
   rpc GetThreadPost (GetThreadPostReq) returns (GetThreadPostRes) {}
@@ -33,11 +33,16 @@ message PaginationRes {
 message Empty {
 }
 
+message GetSiteReq {
+  string pkg_name = 1;
+}
+
 message GetSiteRes {
   Site site = 1;
 }
 
 message Site {
+  string pkg_name = 6;
   string id = 4;
   string icon = 5;
   string name = 1;
@@ -46,6 +51,7 @@ message Site {
 }
 
 message GetBoardsReq {
+  string pkg_name = 3;
   string site_id = 1;
   optional PaginationReq page = 2;
 }
@@ -56,8 +62,9 @@ message GetBoardsRes {
 }
 
 message Board {
-  string id = 1;
+  string pkg_name = 8;
   string site_id = 2;
+  string id = 1;
   string name = 3;
   string icon = 4;
   string large_welcome_image = 5;
@@ -66,6 +73,7 @@ message Board {
 }
 
 message GetThreadInfosReq {
+  string pkg_name = 6;
   string site_id = 1;
   map<string, string> boards_sorting = 2;
   optional PaginationReq page = 3;
@@ -78,9 +86,10 @@ message GetThreadInfosRes {
 }
 
 message GetThreadPostReq {
-  string thread_id = 1;
+  string pkg_name = 5;
   string site_id = 2;
   string board_id = 3;
+  string thread_id = 1;
   string post_id = 4;
 }
 
@@ -89,6 +98,7 @@ message GetThreadPostRes {
 }
 
 message GetRegardingPostsReq {
+  string pkg_name = 6;
   string site_id = 1;
   string board_id = 2;
   string thread_id = 3;
@@ -158,10 +168,11 @@ message LinkParagraph {
 }
 
 message Post {
-  string id = 1;
-  string thread_id = 2;
-  string board_id = 3;
+  string pkg_name = 6;
   string site_id = 4;
+  string board_id = 3;
+  string thread_id = 2;
+  string id = 1;
   string author_id = 11;
   string author_name = 5;
   int64 created_at = 7;
@@ -177,6 +188,7 @@ message Post {
 }
 
 message GetCommentsReq {
+  string pkg_name = 6;
   string site_id = 1;
   string board_id = 2;
   string thread_id = 3;
@@ -190,11 +202,12 @@ message GetCommentsRes {
 }
 
 message Comment {
-  string id = 1;
-  string post_id = 2;
-  string thread_id = 3;
-  string board_id = 4;
+  string pkg_name = 12;
   string site_id = 5;
+  string board_id = 4;
+  string thread_id = 3;
+  string post_id = 2;
+  string id = 1;
   string author_id = 6;
   string author_name = 10;
   repeated Paragraph contents = 11;
