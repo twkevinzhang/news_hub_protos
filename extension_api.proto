@@ -173,13 +173,34 @@ message Post {
   string board_id = 3;
   string thread_id = 2;
   string id = 1;
+  oneof content {
+    ArticlePost article_post = 7;
+    SingleImagePost single_image_post = 8;
+  }
+}
+
+message ArticlePost {
   string author_id = 11;
   string author_name = 5;
   int64 created_at = 7;
   string title = 9;
   int32 liked = 12;
   int32 disliked = 13;
-  int32 comments = 14;
+  repeated Paragraph contents = 17;
+  repeated string tags = 18;
+  int64 latest_regarding_post_created_at = 15;
+  int32 regarding_posts_count = 19;
+  string url = 20;
+}
+
+message SingleImagePost {
+  string author_id = 11;
+  string author_name = 5;
+  int64 created_at = 7;
+  string title = 9;
+  int32 liked = 12;
+  int32 disliked = 13;
+  ImageParagraph image = 21;
   repeated Paragraph contents = 17;
   repeated string tags = 18;
   int64 latest_regarding_post_created_at = 15;
